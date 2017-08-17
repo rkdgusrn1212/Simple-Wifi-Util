@@ -1,4 +1,4 @@
-package com.khgkjg12.simplewifimanager;
+package com.khgkjg12.simplewifiutil;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

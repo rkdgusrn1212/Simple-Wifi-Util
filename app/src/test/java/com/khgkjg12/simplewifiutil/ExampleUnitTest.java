@@ -1,4 +1,4 @@
-package com.khgkjg12.simplewifimanager;
+package com.khgkjg12.simplewifiutil;
 
 import org.junit.Test;
 

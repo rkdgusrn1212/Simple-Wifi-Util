@@ -1,8 +1,10 @@
-package com.khgkjg12.simplewifimanager;
+package com.khgkjg12.simplewifiutil;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.wifi.ScanResult;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,7 +22,7 @@ public class MainActivity extends Activity {
     private EditText ssidText, passwordText;
     private SimpleWifiUtil simpleWifiUtil;
     private ListView listView;
-    private ArrayList<ScanResult> arrayList;
+    private ArrayList<String> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +35,20 @@ public class MainActivity extends Activity {
         connectBtn = (Button)findViewById(R.id.cntbtn);
         listView = (ListView)findViewById(R.id.listview);
 
-        arrayList = new ArrayList<>();
+        arrayList = new ArrayList<String>();
         listView.setAdapter(new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,arrayList));
+        listView.setBackgroundColor(Color.DKGRAY);
 
         simpleWifiUtil = new SimpleWifiUtil(getApplicationContext());
         simpleWifiUtil.setOnWifiScanedListener(new SimpleWifiUtil.OnWifiScanedListener() {
             @Override
             public void onWifiScaned(List<ScanResult> scanResults) {
                 arrayList.clear();
-                arrayList = (ArrayList<ScanResult>) scanResults;
-                listView.notify();
+                Log.d("test",scanResults.toString());
+                for(ScanResult scanResult:scanResults) {
+                    arrayList.add(scanResult.SSID+" capa:"+scanResult.capabilities);
+                }
+                ((ArrayAdapter)listView.getAdapter()).notifyDataSetChanged();
             }
         });
 
