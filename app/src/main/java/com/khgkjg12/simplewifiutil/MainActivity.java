@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                simpleWifiUtil.connnect(ssidText.getText().toString(),passwordText.getText().toString());
+                simpleWifiUtil.connectNetwork(ssidText.getText().toString(),passwordText.getText().toString());
             }
         });
 
